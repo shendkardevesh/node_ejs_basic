@@ -1,0 +1,91 @@
+<%- include('../partial/header.html'); %>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+  <%- include('../partial/navbar.html'); %>
+  <div class="app-body">
+    <%- include('../partial/sidebar.html'); %>
+    <main class="main">
+      <div class="container-fluid">
+        <div class="animated fadeIn">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-header">
+                  <% if(data._id) {%>
+                    <strong>
+                      Update User
+                    </strong>
+                  <%} else { %>
+                    <strong>
+                      Create User
+                    </strong>
+                  <%} %>
+                  <!-- Elements -->
+                </div>
+                <div class="card-body">
+                  <form class="form-horizontal" method="POST">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="name">User Name</label>
+                          <input class="form-control" id="username" name="username" type="text" placeholder="Enter username" value="<%= data.username %>" required>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="code">Date of Birth</label>
+                          <input class="form-control" id="dob" type="date" name="dob" placeholder="Date of Birth" value="<%= data.date %>" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input class="form-control" id="email" name="email" type="email" placeholder="Enter email" value="<%= data.email %>" required>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="mobile">Mobile</label>
+                          <input class="form-control" id="mobile" name="mobile" type="number" placeholder="Enter mobile" value="<%= data.mobile %>" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="city">City</label>
+                          <input class="form-control" id="city" name="city" type="text" placeholder="Enter city" value="<%= data.city %>" required>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="state">State</label>
+                          <input class="form-control" id="state" name="state" type="text" placeholder="Enter state" value="<%= data.state %>" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-md-2 col-form-label" for="address">Address</label>
+                      <div class="col-md-10">
+                        <textarea class="form-control" id="address" name="address" rows="4" placeholder="Address.." required><%= data.address %></textarea>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <button class="btn btn-sm btn-primary" type="submit" value="create" name="action">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                      </button>
+                      <!-- <button class="btn btn-sm btn-danger" type="reset">
+                        <i class="fa fa-ban"></i> Reset
+                      </button> -->
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+<%- include('../partial/footer.html'); %>

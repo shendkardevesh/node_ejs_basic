@@ -1,0 +1,79 @@
+<%- include('../partial/header.html'); %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+  <%- include('../partial/navbar.html'); %>
+  <div class="app-body">
+    <%- include('../partial/sidebar.html'); %>
+    <main class="main">
+      <!-- Breadcrumb-->
+      <div class="container-fluid">
+        <div class="animated fadeIn">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="row">
+                      <div class="col-sm-10">
+                        <i class="fa fa-align-justify"></i>
+                        User list 
+                      </div>
+                      <a href="/users/create">Create New User</a>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <table class="table table-responsive-sm">
+                    <thead>
+                      <tr>
+                        <!-- <th>User Id</th> -->
+                        <th>User Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>Date of Birth</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% users.forEach(function(item){ %>
+                        <tr>
+                          <!-- <td><%= item._id %></td> -->
+                          <td><%= item.username %></td>
+                          <td><%= item.mobile %></td>
+                          <td><%= item.email %></td>
+                          <td><%= item.city %></td>
+                          <td><%= item.dob %></td>
+                          <td><a href="/users/update/<%= item._id %>">Update</a></td>
+                          <td><button onclick="deleteUser('<%= item._id %>')">Delete</button></td>
+                        </tr>
+                      <% }); %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    function deleteUser(id) {
+      console.log(id);
+      // $.post(`/users/delete/${id}`, {}, (data, status) => {
+      //   console.log(data, status);
+      //   if (data.status) {
+      //     location.replace('/users/lists');
+      //   }
+      // });
+      $.ajax({
+        url: `/users/delete/${id}`,
+        type: 'DELETE',
+        success: function(result) {
+          if (result.status) {
+            location.replace('/users/lists');
+          }
+        },
+      })
+    }
+  </script>
+<%- include('../partial/footer.html'); %>
